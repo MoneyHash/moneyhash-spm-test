@@ -17,11 +17,13 @@ let package = Package(
     dependencies: [
         .package(
             name: "MoneyHashShared",
-            path: "../moneyhash-spm"
+            url: "https://github.com/MoneyHash/kmm-test-spm.git",
+            .exact("0.0.4")
         ),
         .package(
             name: "MoneyHashCore",
-            path: "../moneyhashCore-spm"
+            url: "https://github.com/MoneyHash/core-ios-test-spm.git",
+            .exact("0.0.2")
         )
     ],
     targets: [

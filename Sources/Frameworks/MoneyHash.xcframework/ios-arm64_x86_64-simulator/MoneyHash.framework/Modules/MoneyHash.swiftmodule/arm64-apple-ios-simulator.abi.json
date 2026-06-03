@@ -987,14 +987,13 @@
             "children": [
               {
                 "kind": "TypeNominal",
-                "name": "MoneyHashSDK",
-                "printedName": "any MoneyHashCore.MoneyHashSDK",
-                "usr": "s:13MoneyHashCore0aB3SDKP"
+                "name": "ProtocolComposition",
+                "printedName": "any MoneyHashCore.BankAccountInformationProvider & MoneyHashCore.MoneyHashSDK"
               }
             ],
             "declKind": "Func",
-            "usr": "s:9MoneyHash0aB10SDKBuilderC5build0aB4Core0aB3SDK_pyF",
-            "mangledName": "$s9MoneyHash0aB10SDKBuilderC5build0aB4Core0aB3SDK_pyF",
+            "usr": "s:9MoneyHash0aB10SDKBuilderC5build0aB4Core30BankAccountInformationProvider_AE0aB3SDKpyF",
+            "mangledName": "$s9MoneyHash0aB10SDKBuilderC5build0aB4Core30BankAccountInformationProvider_AE0aB3SDKpyF",
             "moduleName": "MoneyHash",
             "declAttributes": [
               "AccessControl",
@@ -1670,13 +1669,6 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "SendableMetatype",
-            "printedName": "SendableMetatype",
-            "usr": "s:s16SendableMetatypeP",
-            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -3778,7 +3770,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(cardFormCollector:type:placeholder:)",
+            "printedName": "init(cardFormCollector:type:maskCvv:placeholder:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -3806,6 +3798,13 @@
                 "usr": "s:13MoneyHashCore13CardFieldTypeO"
               },
               {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "hasDefaultArg": true,
+                "usr": "s:Sb"
+              },
+              {
                 "kind": "TypeFunc",
                 "name": "Function",
                 "printedName": "() -> τ_0_0",
@@ -3824,8 +3823,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:9MoneyHash15SecureTextFieldV17cardFormCollector4type11placeholderACyxGAA04CardG0C_0aB4Core0kE4TypeOxyctcfc",
-            "mangledName": "$s9MoneyHash15SecureTextFieldV17cardFormCollector4type11placeholderACyxGAA04CardG0C_0aB4Core0kE4TypeOxyctcfc",
+            "usr": "s:9MoneyHash15SecureTextFieldV17cardFormCollector4type7maskCvv11placeholderACyxGAA04CardG0C_0aB4Core0mE4TypeOSbxyctcfc",
+            "mangledName": "$s9MoneyHash15SecureTextFieldV17cardFormCollector4type7maskCvv11placeholderACyxGAA04CardG0C_0aB4Core0mE4TypeOSbxyctcfc",
             "moduleName": "MoneyHash",
             "genericSig": "<τ_0_0 where τ_0_0 : SwiftUI.View>",
             "sugared_genericSig": "<Content where Content : SwiftUI.View>",
@@ -3961,6 +3960,23 @@
             "mangledName": "$ss8SendableP"
           }
         ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "MoneyHash",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "MoneyHashShared",
+        "printedName": "MoneyHashShared",
+        "declKind": "Import",
+        "moduleName": "MoneyHash"
       },
       {
         "kind": "Import",
@@ -4194,13 +4210,6 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "SendableMetatype",
-            "printedName": "SendableMetatype",
-            "usr": "s:s16SendableMetatypeP",
-            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -4256,13 +4265,6 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "SendableMetatype",
-            "printedName": "SendableMetatype",
-            "usr": "s:s16SendableMetatypeP",
-            "mangledName": "$ss16SendableMetatypeP"
           },
           {
             "kind": "Conformance",
@@ -4868,13 +4870,6 @@
           },
           {
             "kind": "Conformance",
-            "name": "SendableMetatype",
-            "printedName": "SendableMetatype",
-            "usr": "s:s16SendableMetatypeP",
-            "mangledName": "$ss16SendableMetatypeP"
-          },
-          {
-            "kind": "Conformance",
             "name": "Copyable",
             "printedName": "Copyable",
             "usr": "s:s8CopyableP",
@@ -5044,24 +5039,35 @@
       },
       {
         "kind": "TypeDecl",
-        "name": "CardFormState",
-        "printedName": "CardFormState",
-        "declKind": "Class",
-        "usr": "c:objc(cs)MHSCardFormState",
-        "moduleName": "MoneyHashShared",
-        "objc_name": "MHSCardFormState",
-        "declAttributes": [
-          "ObjC",
-          "Dynamic"
-        ],
-        "superclassUsr": "c:objc(cs)MHSBase",
+        "name": "BankAccountTokenizationSdkBank",
+        "printedName": "BankAccountTokenizationSdkBank",
+        "declKind": "Struct",
+        "usr": "s:13MoneyHashCore026BankAccountTokenizationSdkD0V",
+        "mangledName": "$s13MoneyHashCore026BankAccountTokenizationSdkD0V",
+        "moduleName": "MoneyHashCore",
         "isExternal": true,
-        "inheritsConvenienceInitializers": true,
-        "superclassNames": [
-          "MoneyHashShared.KotlinBase",
-          "ObjectiveC.NSObject"
-        ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Decodable",
+            "printedName": "Decodable",
+            "usr": "s:Se",
+            "mangledName": "$sSe"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Encodable",
+            "printedName": "Encodable",
+            "usr": "s:SE",
+            "mangledName": "$sSE"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
           {
             "kind": "Conformance",
             "name": "Copyable",
@@ -5075,6 +5081,32 @@
             "printedName": "Escapable",
             "usr": "s:s9EscapableP",
             "mangledName": "$ss9EscapableP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "BankAccountTokenizationSdkResponse",
+        "printedName": "BankAccountTokenizationSdkResponse",
+        "declKind": "Struct",
+        "usr": "s:13MoneyHashCore34BankAccountTokenizationSdkResponseV",
+        "mangledName": "$s13MoneyHashCore34BankAccountTokenizationSdkResponseV",
+        "moduleName": "MoneyHashCore",
+        "isExternal": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Decodable",
+            "printedName": "Decodable",
+            "usr": "s:Se",
+            "mangledName": "$sSe"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Encodable",
+            "printedName": "Encodable",
+            "usr": "s:SE",
+            "mangledName": "$sSE"
           },
           {
             "kind": "Conformance",
@@ -5085,45 +5117,17 @@
           },
           {
             "kind": "Conformance",
-            "name": "Hashable",
-            "printedName": "Hashable",
-            "usr": "s:SH",
-            "mangledName": "$sSH"
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
           },
           {
             "kind": "Conformance",
-            "name": "CVarArg",
-            "printedName": "CVarArg",
-            "usr": "s:s7CVarArgP",
-            "mangledName": "$ss7CVarArgP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "_KeyValueCodingAndObservingPublishing",
-            "printedName": "_KeyValueCodingAndObservingPublishing",
-            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
-            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "_KeyValueCodingAndObserving",
-            "printedName": "_KeyValueCodingAndObserving",
-            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
-            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "CustomStringConvertible",
-            "printedName": "CustomStringConvertible",
-            "usr": "s:s23CustomStringConvertibleP",
-            "mangledName": "$ss23CustomStringConvertibleP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "CustomDebugStringConvertible",
-            "printedName": "CustomDebugStringConvertible",
-            "usr": "s:s28CustomDebugStringConvertibleP",
-            "mangledName": "$ss28CustomDebugStringConvertibleP"
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
           }
         ]
       },
@@ -5230,102 +5234,10 @@
           },
           {
             "kind": "Conformance",
-            "name": "SendableMetatype",
-            "printedName": "SendableMetatype",
-            "usr": "s:s16SendableMetatypeP",
-            "mangledName": "$ss16SendableMetatypeP"
-          },
-          {
-            "kind": "Conformance",
             "name": "BitwiseCopyable",
             "printedName": "BitwiseCopyable",
             "usr": "s:s15BitwiseCopyableP",
             "mangledName": "$ss15BitwiseCopyableP"
-          }
-        ]
-      },
-      {
-        "kind": "TypeDecl",
-        "name": "CardFieldState",
-        "printedName": "CardFieldState",
-        "declKind": "Class",
-        "usr": "c:objc(cs)MHSCardFieldState",
-        "moduleName": "MoneyHashShared",
-        "objc_name": "MHSCardFieldState",
-        "declAttributes": [
-          "ObjC",
-          "Dynamic"
-        ],
-        "superclassUsr": "c:objc(cs)MHSBase",
-        "isExternal": true,
-        "inheritsConvenienceInitializers": true,
-        "superclassNames": [
-          "MoneyHashShared.KotlinBase",
-          "ObjectiveC.NSObject"
-        ],
-        "conformances": [
-          {
-            "kind": "Conformance",
-            "name": "Copyable",
-            "printedName": "Copyable",
-            "usr": "s:s8CopyableP",
-            "mangledName": "$ss8CopyableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Escapable",
-            "printedName": "Escapable",
-            "usr": "s:s9EscapableP",
-            "mangledName": "$ss9EscapableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Equatable",
-            "printedName": "Equatable",
-            "usr": "s:SQ",
-            "mangledName": "$sSQ"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Hashable",
-            "printedName": "Hashable",
-            "usr": "s:SH",
-            "mangledName": "$sSH"
-          },
-          {
-            "kind": "Conformance",
-            "name": "CVarArg",
-            "printedName": "CVarArg",
-            "usr": "s:s7CVarArgP",
-            "mangledName": "$ss7CVarArgP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "_KeyValueCodingAndObservingPublishing",
-            "printedName": "_KeyValueCodingAndObservingPublishing",
-            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
-            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "_KeyValueCodingAndObserving",
-            "printedName": "_KeyValueCodingAndObserving",
-            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
-            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "CustomStringConvertible",
-            "printedName": "CustomStringConvertible",
-            "usr": "s:s23CustomStringConvertibleP",
-            "mangledName": "$ss23CustomStringConvertibleP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "CustomDebugStringConvertible",
-            "printedName": "CustomDebugStringConvertible",
-            "usr": "s:s28CustomDebugStringConvertibleP",
-            "mangledName": "$ss28CustomDebugStringConvertibleP"
           }
         ]
       },
@@ -5514,13 +5426,6 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "SendableMetatype",
-            "printedName": "SendableMetatype",
-            "usr": "s:s16SendableMetatypeP",
-            "mangledName": "$ss16SendableMetatypeP"
           },
           {
             "kind": "Conformance",
@@ -5974,13 +5879,6 @@
           },
           {
             "kind": "Conformance",
-            "name": "SendableMetatype",
-            "printedName": "SendableMetatype",
-            "usr": "s:s16SendableMetatypeP",
-            "mangledName": "$ss16SendableMetatypeP"
-          },
-          {
-            "kind": "Conformance",
             "name": "BitwiseCopyable",
             "printedName": "BitwiseCopyable",
             "usr": "s:s15BitwiseCopyableP",
@@ -6176,13 +6074,6 @@
           },
           {
             "kind": "Conformance",
-            "name": "SendableMetatype",
-            "printedName": "SendableMetatype",
-            "usr": "s:s16SendableMetatypeP",
-            "mangledName": "$ss16SendableMetatypeP"
-          },
-          {
-            "kind": "Conformance",
             "name": "BitwiseCopyable",
             "printedName": "BitwiseCopyable",
             "usr": "s:s15BitwiseCopyableP",
@@ -6375,13 +6266,6 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "SendableMetatype",
-            "printedName": "SendableMetatype",
-            "usr": "s:s16SendableMetatypeP",
-            "mangledName": "$ss16SendableMetatypeP"
           },
           {
             "kind": "Conformance",
@@ -7261,13 +7145,6 @@
           },
           {
             "kind": "Conformance",
-            "name": "SendableMetatype",
-            "printedName": "SendableMetatype",
-            "usr": "s:s16SendableMetatypeP",
-            "mangledName": "$ss16SendableMetatypeP"
-          },
-          {
-            "kind": "Conformance",
             "name": "BitwiseCopyable",
             "printedName": "BitwiseCopyable",
             "usr": "s:s15BitwiseCopyableP",
@@ -7460,13 +7337,6 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "SendableMetatype",
-            "printedName": "SendableMetatype",
-            "usr": "s:s16SendableMetatypeP",
-            "mangledName": "$ss16SendableMetatypeP"
           },
           {
             "kind": "Conformance",
@@ -8002,13 +7872,6 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "SendableMetatype",
-            "printedName": "SendableMetatype",
-            "usr": "s:s16SendableMetatypeP",
-            "mangledName": "$ss16SendableMetatypeP"
           },
           {
             "kind": "Conformance",
@@ -8803,13 +8666,6 @@
           },
           {
             "kind": "Conformance",
-            "name": "SendableMetatype",
-            "printedName": "SendableMetatype",
-            "usr": "s:s16SendableMetatypeP",
-            "mangledName": "$ss16SendableMetatypeP"
-          },
-          {
-            "kind": "Conformance",
             "name": "BitwiseCopyable",
             "printedName": "BitwiseCopyable",
             "usr": "s:s15BitwiseCopyableP",
@@ -9090,13 +8946,6 @@
           },
           {
             "kind": "Conformance",
-            "name": "SendableMetatype",
-            "printedName": "SendableMetatype",
-            "usr": "s:s16SendableMetatypeP",
-            "mangledName": "$ss16SendableMetatypeP"
-          },
-          {
-            "kind": "Conformance",
             "name": "BitwiseCopyable",
             "printedName": "BitwiseCopyable",
             "usr": "s:s15BitwiseCopyableP",
@@ -9204,13 +9053,6 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "SendableMetatype",
-            "printedName": "SendableMetatype",
-            "usr": "s:s16SendableMetatypeP",
-            "mangledName": "$ss16SendableMetatypeP"
           },
           {
             "kind": "Conformance",
@@ -9736,273 +9578,273 @@
   },
   "ConstValues": [
     {
-      "filePath": "\/Users\/kerollosnabil\/Desktop\/moneyHash\/mobile-one\/iOS\/MoneyHash\/MoneyHash\/ProgressView\/StrokeAnimation.swift",
+      "filePath": "\/Users\/distiller\/project\/iOS\/MoneyHash\/MoneyHash\/ProgressView\/StrokeAnimation.swift",
       "kind": "FloatLiteral",
       "offset": 317,
       "length": 3,
       "value": "0.0"
     },
     {
-      "filePath": "\/Users\/kerollosnabil\/Desktop\/moneyHash\/mobile-one\/iOS\/MoneyHash\/MoneyHash\/Extensions\/ViewExtention.swift",
+      "filePath": "\/Users\/distiller\/project\/iOS\/MoneyHash\/MoneyHash\/Extensions\/ViewExtention.swift",
       "kind": "BooleanLiteral",
       "offset": 195,
       "length": 4,
       "value": "true"
     },
     {
-      "filePath": "\/Users\/kerollosnabil\/Desktop\/moneyHash\/mobile-one\/iOS\/MoneyHash\/MoneyHash\/DI \/DependencyContainer.swift",
+      "filePath": "\/Users\/distiller\/project\/iOS\/MoneyHash\/MoneyHash\/DI \/DependencyContainer.swift",
       "kind": "BooleanLiteral",
       "offset": 288,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/kerollosnabil\/Desktop\/moneyHash\/mobile-one\/iOS\/MoneyHash\/MoneyHash\/Models\/MHError.swift",
+      "filePath": "\/Users\/distiller\/project\/iOS\/MoneyHash\/MoneyHash\/Models\/MHError.swift",
       "kind": "Array",
       "offset": 1444,
       "length": 2,
       "value": "[]"
     },
     {
-      "filePath": "\/Users\/kerollosnabil\/Desktop\/moneyHash\/mobile-one\/iOS\/MoneyHash\/MoneyHash\/Models\/MHError.swift",
+      "filePath": "\/Users\/distiller\/project\/iOS\/MoneyHash\/MoneyHash\/Models\/MHError.swift",
       "kind": "StringLiteral",
       "offset": 1717,
       "length": 17,
       "value": "\"card_validation\""
     },
     {
-      "filePath": "\/Users\/kerollosnabil\/Desktop\/moneyHash\/mobile-one\/iOS\/MoneyHash\/MoneyHash\/SecureTextField\/UIFields\/SecureTextFieldViewModel.swift",
+      "filePath": "\/Users\/distiller\/project\/iOS\/MoneyHash\/MoneyHash\/SecureTextField\/UIFields\/SecureTextFieldViewModel.swift",
       "kind": "IntegerLiteral",
       "offset": 697,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/kerollosnabil\/Desktop\/moneyHash\/mobile-one\/iOS\/MoneyHash\/MoneyHash\/SecureTextField\/UIFields\/SecureTextFieldViewModel.swift",
+      "filePath": "\/Users\/distiller\/project\/iOS\/MoneyHash\/MoneyHash\/SecureTextField\/UIFields\/SecureTextFieldViewModel.swift",
       "kind": "BooleanLiteral",
       "offset": 478,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/kerollosnabil\/Desktop\/moneyHash\/mobile-one\/iOS\/MoneyHash\/MoneyHash\/SecureTextField\/UIFields\/SecureTextFieldViewModel.swift",
+      "filePath": "\/Users\/distiller\/project\/iOS\/MoneyHash\/MoneyHash\/SecureTextField\/UIFields\/SecureTextFieldViewModel.swift",
       "kind": "IntegerLiteral",
       "offset": 990,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/kerollosnabil\/Desktop\/moneyHash\/mobile-one\/iOS\/MoneyHash\/MoneyHash\/Base\/MHViewController.swift",
+      "filePath": "\/Users\/distiller\/project\/iOS\/MoneyHash\/MoneyHash\/Base\/MHViewController.swift",
       "kind": "BooleanLiteral",
       "offset": 1042,
       "length": 4,
       "value": "true"
     },
     {
-      "filePath": "\/Users\/kerollosnabil\/Desktop\/moneyHash\/mobile-one\/iOS\/MoneyHash\/MoneyHash\/Base\/MHViewController.swift",
+      "filePath": "\/Users\/distiller\/project\/iOS\/MoneyHash\/MoneyHash\/Base\/MHViewController.swift",
       "kind": "BooleanLiteral",
       "offset": 1090,
       "length": 4,
       "value": "true"
     },
     {
-      "filePath": "\/Users\/kerollosnabil\/Desktop\/moneyHash\/mobile-one\/iOS\/MoneyHash\/MoneyHash\/Base\/MHViewController.swift",
+      "filePath": "\/Users\/distiller\/project\/iOS\/MoneyHash\/MoneyHash\/Base\/MHViewController.swift",
       "kind": "Array",
       "offset": 1153,
       "length": 2,
       "value": "[]"
     },
     {
-      "filePath": "\/Users\/kerollosnabil\/Desktop\/moneyHash\/mobile-one\/iOS\/MoneyHash\/MoneyHash\/Base\/MHViewController.swift",
+      "filePath": "\/Users\/distiller\/project\/iOS\/MoneyHash\/MoneyHash\/Base\/MHViewController.swift",
       "kind": "BooleanLiteral",
-      "offset": 1192,
+      "offset": 1203,
       "length": 4,
       "value": "true"
     },
     {
-      "filePath": "\/Users\/kerollosnabil\/Desktop\/moneyHash\/mobile-one\/iOS\/MoneyHash\/MoneyHash\/Base\/MHViewController.swift",
+      "filePath": "\/Users\/distiller\/project\/iOS\/MoneyHash\/MoneyHash\/Base\/MHViewController.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1261,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/distiller\/project\/iOS\/MoneyHash\/MoneyHash\/Base\/MHViewController.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1371,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/distiller\/project\/iOS\/MoneyHash\/MoneyHash\/Base\/MHViewController.swift",
       "kind": "StringLiteral",
-      "offset": 1206,
+      "offset": 1385,
       "length": 29,
       "value": "\"allowFileAccessFromFileURLs\""
     },
     {
-      "filePath": "\/Users\/kerollosnabil\/Desktop\/moneyHash\/mobile-one\/iOS\/MoneyHash\/MoneyHash\/Base\/MHViewController.swift",
+      "filePath": "\/Users\/distiller\/project\/iOS\/MoneyHash\/MoneyHash\/Base\/MHViewController.swift",
       "kind": "BooleanLiteral",
-      "offset": 1284,
-      "length": 4,
-      "value": "true"
-    },
-    {
-      "filePath": "\/Users\/kerollosnabil\/Desktop\/moneyHash\/mobile-one\/iOS\/MoneyHash\/MoneyHash\/Base\/MHViewController.swift",
-      "kind": "BooleanLiteral",
-      "offset": 1342,
-      "length": 4,
-      "value": "true"
-    },
-    {
-      "filePath": "\/Users\/kerollosnabil\/Desktop\/moneyHash\/mobile-one\/iOS\/MoneyHash\/MoneyHash\/Base\/MHViewController.swift",
-      "kind": "BooleanLiteral",
-      "offset": 1462,
+      "offset": 1541,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/kerollosnabil\/Desktop\/moneyHash\/mobile-one\/iOS\/MoneyHash\/MoneyHash\/Base\/MHViewController.swift",
+      "filePath": "\/Users\/distiller\/project\/iOS\/MoneyHash\/MoneyHash\/Base\/MHViewController.swift",
       "kind": "BooleanLiteral",
-      "offset": 1664,
+      "offset": 1743,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/kerollosnabil\/Desktop\/moneyHash\/mobile-one\/iOS\/MoneyHash\/MoneyHash\/Base\/MHViewController.swift",
-      "kind": "StringLiteral",
-      "offset": 1785,
-      "length": 137,
-      "value": "\"Mozilla\/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit\/605.1.15 (KHTML, like Gecko) Version\/17.0 Mobile\/15E148 Safari\/604.1\""
-    },
-    {
-      "filePath": "\/Users\/kerollosnabil\/Desktop\/moneyHash\/mobile-one\/iOS\/MoneyHash\/MoneyHash\/Base\/MHViewController.swift",
+      "filePath": "\/Users\/distiller\/project\/iOS\/MoneyHash\/MoneyHash\/Base\/MHViewController.swift",
       "kind": "BooleanLiteral",
-      "offset": 2009,
+      "offset": 1827,
       "length": 4,
       "value": "true"
     },
     {
-      "filePath": "\/Users\/kerollosnabil\/Desktop\/moneyHash\/mobile-one\/iOS\/MoneyHash\/MoneyHash\/Base\/MHViewController.swift",
+      "filePath": "\/Users\/distiller\/project\/iOS\/MoneyHash\/MoneyHash\/Base\/MHViewController.swift",
       "kind": "BooleanLiteral",
-      "offset": 2201,
+      "offset": 2019,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/kerollosnabil\/Desktop\/moneyHash\/mobile-one\/iOS\/MoneyHash\/MoneyHash\/Base\/MHViewController.swift",
+      "filePath": "\/Users\/distiller\/project\/iOS\/MoneyHash\/MoneyHash\/Base\/MHViewController.swift",
       "kind": "IntegerLiteral",
-      "offset": 2418,
+      "offset": 2236,
       "length": 1,
       "value": "8"
     },
     {
-      "filePath": "\/Users\/kerollosnabil\/Desktop\/moneyHash\/mobile-one\/iOS\/MoneyHash\/MoneyHash\/Base\/MHViewController.swift",
+      "filePath": "\/Users\/distiller\/project\/iOS\/MoneyHash\/MoneyHash\/Base\/MHViewController.swift",
       "kind": "BooleanLiteral",
-      "offset": 2495,
+      "offset": 2313,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/kerollosnabil\/Desktop\/moneyHash\/mobile-one\/iOS\/MoneyHash\/MoneyHash\/Base\/MHViewController.swift",
+      "filePath": "\/Users\/distiller\/project\/iOS\/MoneyHash\/MoneyHash\/Base\/MHViewController.swift",
       "kind": "BooleanLiteral",
-      "offset": 2670,
+      "offset": 2488,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/kerollosnabil\/Desktop\/moneyHash\/mobile-one\/iOS\/MoneyHash\/MoneyHash\/Base\/MHViewController.swift",
+      "filePath": "\/Users\/distiller\/project\/iOS\/MoneyHash\/MoneyHash\/Base\/MHViewController.swift",
       "kind": "BooleanLiteral",
-      "offset": 3085,
+      "offset": 2903,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/kerollosnabil\/Desktop\/moneyHash\/mobile-one\/iOS\/MoneyHash\/MoneyHash\/Base\/MHViewController.swift",
+      "filePath": "\/Users\/distiller\/project\/iOS\/MoneyHash\/MoneyHash\/Base\/MHViewController.swift",
       "kind": "BooleanLiteral",
-      "offset": 3326,
+      "offset": 3144,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/kerollosnabil\/Desktop\/moneyHash\/mobile-one\/iOS\/MoneyHash\/MoneyHash\/Core\/DefaultMoneyHashSDK.swift",
+      "filePath": "\/Users\/distiller\/project\/iOS\/MoneyHash\/MoneyHash\/Core\/DefaultMoneyHashSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 16931,
+      "offset": 14005,
       "length": 2,
       "value": "10"
     },
     {
-      "filePath": "\/Users\/kerollosnabil\/Desktop\/moneyHash\/mobile-one\/iOS\/MoneyHash\/MoneyHash\/Core\/DefaultMoneyHashSDK.swift",
+      "filePath": "\/Users\/distiller\/project\/iOS\/MoneyHash\/MoneyHash\/Core\/DefaultMoneyHashSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 16958,
+      "offset": 14032,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/kerollosnabil\/Desktop\/moneyHash\/mobile-one\/iOS\/MoneyHash\/MoneyHash\/Constant\/MHConstants.swift",
+      "filePath": "\/Users\/distiller\/project\/iOS\/MoneyHash\/MoneyHash\/Constant\/MHConstants.swift",
       "kind": "StringLiteral",
       "offset": 97,
       "length": 7,
       "value": "\"2.0.1\""
     },
     {
-      "filePath": "\/Users\/kerollosnabil\/Desktop\/moneyHash\/mobile-one\/iOS\/MoneyHash\/MoneyHash\/Constant\/MHConstants.swift",
+      "filePath": "\/Users\/distiller\/project\/iOS\/MoneyHash\/MoneyHash\/Constant\/MHConstants.swift",
       "kind": "StringLiteral",
       "offset": 136,
       "length": 7,
       "value": "\"style\""
     },
     {
-      "filePath": "\/Users\/kerollosnabil\/Desktop\/moneyHash\/mobile-one\/iOS\/MoneyHash\/MoneyHash\/Constant\/MHConstants.swift",
+      "filePath": "\/Users\/distiller\/project\/iOS\/MoneyHash\/MoneyHash\/Constant\/MHConstants.swift",
       "kind": "StringLiteral",
       "offset": 173,
       "length": 5,
       "value": "\"sdk\""
     },
     {
-      "filePath": "\/Users\/kerollosnabil\/Desktop\/moneyHash\/mobile-one\/iOS\/MoneyHash\/MoneyHash\/Constant\/MHConstants.swift",
+      "filePath": "\/Users\/distiller\/project\/iOS\/MoneyHash\/MoneyHash\/Constant\/MHConstants.swift",
       "kind": "StringLiteral",
       "offset": 212,
       "length": 6,
       "value": "\"lang\""
     },
     {
-      "filePath": "\/Users\/kerollosnabil\/Desktop\/moneyHash\/mobile-one\/iOS\/MoneyHash\/MoneyHash\/Constant\/MHConstants.swift",
+      "filePath": "\/Users\/distiller\/project\/iOS\/MoneyHash\/MoneyHash\/Constant\/MHConstants.swift",
       "kind": "StringLiteral",
       "offset": 250,
       "length": 7,
       "value": "\"agent\""
     },
     {
-      "filePath": "\/Users\/kerollosnabil\/Desktop\/moneyHash\/mobile-one\/iOS\/MoneyHash\/MoneyHash\/Constant\/MHConstants.swift",
+      "filePath": "\/Users\/distiller\/project\/iOS\/MoneyHash\/MoneyHash\/Constant\/MHConstants.swift",
       "kind": "StringLiteral",
       "offset": 291,
       "length": 5,
       "value": "\"ios\""
     },
     {
-      "filePath": "\/Users\/kerollosnabil\/Desktop\/moneyHash\/mobile-one\/iOS\/MoneyHash\/MoneyHash\/Constant\/MHConstants.swift",
+      "filePath": "\/Users\/distiller\/project\/iOS\/MoneyHash\/MoneyHash\/Constant\/MHConstants.swift",
       "kind": "StringLiteral",
       "offset": 340,
       "length": 20,
       "value": "\"subscription-plan\/\""
     },
     {
-      "filePath": "\/Users\/kerollosnabil\/Desktop\/moneyHash\/mobile-one\/iOS\/MoneyHash\/MoneyHash\/Constant\/MHConstants.swift",
+      "filePath": "\/Users\/distiller\/project\/iOS\/MoneyHash\/MoneyHash\/Constant\/MHConstants.swift",
       "kind": "StringLiteral",
       "offset": 409,
       "length": 14,
       "value": "\"bankaccount\/\""
     },
     {
-      "filePath": "\/Users\/kerollosnabil\/Desktop\/moneyHash\/mobile-one\/iOS\/MoneyHash\/MoneyHash\/Core\/IntentUseCase.swift",
+      "filePath": "\/Users\/distiller\/project\/iOS\/MoneyHash\/MoneyHash\/Core\/IntentUseCase.swift",
       "kind": "IntegerLiteral",
       "offset": 11436,
       "length": 2,
       "value": "10"
     },
     {
-      "filePath": "\/Users\/kerollosnabil\/Desktop\/moneyHash\/mobile-one\/iOS\/MoneyHash\/MoneyHash\/Core\/IntentUseCase.swift",
+      "filePath": "\/Users\/distiller\/project\/iOS\/MoneyHash\/MoneyHash\/Core\/IntentUseCase.swift",
       "kind": "IntegerLiteral",
       "offset": 11463,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/kerollosnabil\/Desktop\/moneyHash\/mobile-one\/iOS\/MoneyHash\/MoneyHash\/SecureTextField\/UIFields\/SecureTextField.swift",
+      "filePath": "\/Users\/distiller\/project\/iOS\/MoneyHash\/MoneyHash\/SecureTextField\/UIFields\/SecureTextField.swift",
       "kind": "StringLiteral",
       "offset": 487,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/kerollosnabil\/Desktop\/moneyHash\/mobile-one\/iOS\/MoneyHash\/MoneyHash\/ProgressView\/ProgressView.swift",
+      "filePath": "\/Users\/distiller\/project\/iOS\/MoneyHash\/MoneyHash\/SecureTextField\/UIFields\/SecureTextField.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1299,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/distiller\/project\/iOS\/MoneyHash\/MoneyHash\/ProgressView\/ProgressView.swift",
       "kind": "BooleanLiteral",
       "offset": 2753,
       "length": 5,
