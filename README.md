@@ -1,0 +1,1 @@
+# moneyhash-spm-test
