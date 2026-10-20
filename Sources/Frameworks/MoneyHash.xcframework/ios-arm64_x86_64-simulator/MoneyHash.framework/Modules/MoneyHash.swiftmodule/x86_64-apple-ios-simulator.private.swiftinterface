@@ -5,8 +5,7 @@
 import Combine
 import Foundation
 @_exported import MoneyHash
-@_exported import MoneyHashCore
-import MoneyHashShared
+@_exported @_spi(MoneyHashInternal) import MoneyHashCore
 import PassKit
 import Swift
 import SwiftUI
@@ -15,18 +14,16 @@ import WebKit
 import _Concurrency
 import _StringProcessing
 import _SwiftConcurrencyShims
-public enum OperationType : Swift.Codable {
-  case payment
-  case payout
-  case cards
-  case vault
-  public static func == (a: MoneyHash.OperationType, b: MoneyHash.OperationType) -> Swift.Bool
-  public func encode(to encoder: any Swift.Encoder) throws
-  public func hash(into hasher: inout Swift.Hasher)
-  public var hashValue: Swift.Int {
+@_hasMissingDesignatedInitializers public class CardForm {
+  public func collect() async throws -> MoneyHashCore.VaultData?
+  public func pay(intentId: Swift.String, cardData: MoneyHashCore.VaultData, saveCard: Swift.Bool, billingData: [Swift.String : Swift.String]?, shippingData: [Swift.String : Swift.String]?, installmentPlanData: MoneyHashCore.InstallmentPlanData?) async throws -> MoneyHashCore.IntentDetails
+  public func createCardToken(cardIntentId: Swift.String, cardData: MoneyHashCore.VaultData) async throws -> MoneyHashCore.IntentStateDetails?
+  public func binLookup(cardData: MoneyHashCore.VaultData) async throws -> MoneyHashCore.LookupData?
+  public func binLookup() async throws -> MoneyHashCore.LookupData?
+  public var isValid: Swift.Bool {
     get
   }
-  public init(from decoder: any Swift.Decoder) throws
+  @objc deinit
 }
 public class CardFormBuilder {
   public init()
@@ -39,52 +36,6 @@ public class CardFormBuilder {
   public func setCardBrandChangeHandler(_ handler: @escaping (MoneyHashCore.CardBrand) -> Swift.Void) -> MoneyHash.CardFormBuilder
   public func build() -> MoneyHash.CardForm
   @objc deinit
-}
-public class MoneyHashSDKBuilder {
-  public init()
-  @discardableResult
-  public func setPublicKey(_ key: Swift.String) -> MoneyHash.MoneyHashSDKBuilder
-  @discardableResult
-  public func setApplePayConfiguration(_ applePayConfiguration: MoneyHashCore.ApplePayConfiguration) -> MoneyHash.MoneyHashSDKBuilder
-  public func build() -> any MoneyHashCore.BankAccountInformationProvider & MoneyHashCore.MoneyHashSDK
-  @objc deinit
-}
-@_hasMissingDesignatedInitializers public class CardForm {
-  public func collect() async throws -> MoneyHashCore.VaultData?
-  public func pay(intentId: Swift.String, cardData: MoneyHashCore.VaultData, saveCard: Swift.Bool, billingData: [Swift.String : Swift.String]?, shippingData: [Swift.String : Swift.String]?, installmentPlanData: MoneyHashCore.InstallmentPlanData?) async throws -> MoneyHashCore.IntentDetails
-  public func createCardToken(cardIntentId: Swift.String, cardData: MoneyHashCore.VaultData) async throws -> MoneyHashCore.IntentStateDetails?
-  public func binLookup(cardData: MoneyHashCore.VaultData) async throws -> MoneyHashCore.LookupData?
-  public func binLookup() async throws -> MoneyHashCore.LookupData?
-  public var isValid: Swift.Bool {
-    get
-  }
-  @objc deinit
-}
-public struct MHError : Swift.Error, Swift.Codable {
-  public let type: MoneyHash.ErrorType
-  public let message: Swift.String
-  public let errors: [MoneyHash.ErrorInfo]
-  public func encode(to encoder: any Swift.Encoder) throws
-  public init(from decoder: any Swift.Decoder) throws
-}
-public enum ErrorType : Swift.String, Swift.Codable {
-  case cancelled
-  case cardValidation
-  case network
-  case unknown
-  case notCompatibleWithApplePay
-  case applePayTransactionFailed
-  public init?(rawValue: Swift.String)
-  public typealias RawValue = Swift.String
-  public var rawValue: Swift.String {
-    get
-  }
-}
-public struct ErrorInfo : Swift.Codable {
-  public let key: Swift.String
-  public let message: Swift.String
-  public func encode(to encoder: any Swift.Encoder) throws
-  public init(from decoder: any Swift.Decoder) throws
 }
 extension Swift.Encodable {
   public func convertToJSONString() throws -> Swift.String
@@ -116,13 +67,56 @@ public enum EmbedAction {
   @_Concurrency.MainActor @preconcurrency @objc public func webView(_ webView: WebKit.WKWebView, requestMediaCapturePermissionFor origin: WebKit.WKSecurityOrigin, initiatedByFrame frame: WebKit.WKFrameInfo, type: WebKit.WKMediaCaptureType, decisionHandler: @escaping (WebKit.WKPermissionDecision) -> Swift.Void)
   @_Concurrency.MainActor @preconcurrency @objc public func webView(_ webView: WebKit.WKWebView, runJavaScriptAlertPanelWithMessage message: Swift.String, initiatedByFrame frame: WebKit.WKFrameInfo, completionHandler: @escaping () -> Swift.Void)
 }
-public enum CollectibleBillingData : Swift.String, Swift.Codable {
-  case email
-  public init?(rawValue: Swift.String)
-  public typealias RawValue = Swift.String
-  public var rawValue: Swift.String {
-    get
-  }
+public protocol MoneyHashSDK : MoneyHashCore.MoneyHashContextProvider {
+  func renderForm(on viewController: UIKit.UIViewController, intentId: Swift.String, embedStyle: MoneyHashCore.EmbedStyle?, intentType: MoneyHashCore.IntentType, completionHandler: @escaping (Swift.Result<MoneyHashCore.IntentDetails, any Swift.Error>) -> Swift.Void)
+  @_Concurrency.MainActor func renderURL(on viewController: UIKit.UIViewController, urlToRender: Foundation.URL, intentId: Swift.String, embedStyle: MoneyHashCore.EmbedStyle?, intentType: MoneyHashCore.IntentType, completionHandler: @escaping (Swift.Result<MoneyHashCore.IntentDetails, any Swift.Error>) -> Swift.Void)
+  func getMethods(currency: Swift.String, amount: Swift.Double?, customer: Swift.String?, flowId: Swift.String?, operation: MoneyHashCore.IntentOperation?, customFields: [Swift.String : MoneyHashCore.CustomFieldValue]?) async throws -> MoneyHashCore.IntentMethods
+  func getMethods(intentId: Swift.String, intentType: MoneyHashCore.IntentType) async throws -> MoneyHashCore.IntentMethods
+  func getIntentDetails(intentId: Swift.String, intentType: MoneyHashCore.IntentType) async throws -> MoneyHashCore.IntentDetails
+  func deleteSavedCard(cardTokenId: Swift.String, intentSecret: Swift.String) async throws
+  func resetSelectedMethod(intentId: Swift.String, intentType: MoneyHashCore.IntentType) async throws -> MoneyHashCore.MethodsResult
+  func proceedWithMethod(intentId: Swift.String, intentType: MoneyHashCore.IntentType, selectedMethodId: Swift.String, methodType: MoneyHashCore.IntentMethodType, metaData: MoneyHashCore.IntentMethodMetaData?, useWalletBalance: Swift.Bool?, installmentPlanData: MoneyHashCore.InstallmentPlanData?) async throws -> MoneyHashCore.MethodsResult
+  func submitForm(intentID: Swift.String, selectedMethod: Swift.String, billingData: [Swift.String : Swift.String]?, shippingData: [Swift.String : Swift.String]?, vaultData: MoneyHashCore.VaultData?, saveCard: Swift.Bool?, installmentPlanData: MoneyHashCore.InstallmentPlanData?) async throws -> MoneyHashCore.IntentDetails
+  func submitCardCVV(intentID: Swift.String, cvv: Swift.String, installmentPlanData: MoneyHashCore.InstallmentPlanData?) async throws -> MoneyHashCore.IntentDetails
+  func setLogLevel(logLevel: MoneyHashCore.LogLevel)
+  func submitPaymentReceipt(intentId: Swift.String, nativePayReceipt: MoneyHashCore.NativePayReceipt) async throws -> MoneyHashCore.IntentDetails
+  @_Concurrency.MainActor func generateApplePayReceipt(applePayData: MoneyHashCore.ApplePayData) async throws -> MoneyHashCore.NativePayReceipt
+  @available(iOS 16.0, *)
+  @_Concurrency.MainActor func generateApplePayReceipt(applePayData: MoneyHashCore.ApplePayData, recurringPayment: MoneyHashCore.RecurringPaymentRequest?, automaticReload: MoneyHashCore.AutomaticReloadPaymentRequest?) async throws -> MoneyHashCore.NativePayReceipt
+  @_Concurrency.MainActor func generateApplePayReceipt(depositAmount: Swift.Double, merchantIdentifier: Swift.String, currencyCode: Swift.String, countryCode: Swift.String, supportedNetworks: [Swift.String]?, merchantCapabilities: [Swift.String]?) async throws -> MoneyHashCore.NativePayReceipt
+  @available(iOS 16.0, *)
+  @_Concurrency.MainActor func generateApplePayReceipt(depositAmount: Swift.Double, merchantIdentifier: Swift.String, currencyCode: Swift.String, countryCode: Swift.String, supportedNetworks: [Swift.String]?, merchantCapabilities: [Swift.String]?, recurringPayment: MoneyHashCore.RecurringPaymentRequest?, automaticReload: MoneyHashCore.AutomaticReloadPaymentRequest?) async throws -> MoneyHashCore.NativePayReceipt
+  @available(*, deprecated, message: "Use generateApplePayReceipt(applePayData:) instead. This method will be removed in the next major version.")
+  @_disfavoredOverload @_Concurrency.MainActor func generateApplePayReceipt(depositAmount: Swift.Float, applePayData: MoneyHashCore.ApplePayData) async throws -> MoneyHashCore.NativePayReceipt
+  @available(*, deprecated, message: "Pass depositAmount as a Double instead. This method will be removed in the next major version.")
+  @_disfavoredOverload @_Concurrency.MainActor func generateApplePayReceipt(depositAmount: Swift.Float, merchantIdentifier: Swift.String, currencyCode: Swift.String, countryCode: Swift.String, supportedNetworks: [Swift.String]?, merchantCapabilities: [Swift.String]?) async throws -> MoneyHashCore.NativePayReceipt
+  @available(iOS 16.0, *)
+  @available(*, deprecated, message: "Pass depositAmount as a Double instead. This method will be removed in the next major version.")
+  @_disfavoredOverload @_Concurrency.MainActor func generateApplePayReceipt(depositAmount: Swift.Float, merchantIdentifier: Swift.String, currencyCode: Swift.String, countryCode: Swift.String, supportedNetworks: [Swift.String]?, merchantCapabilities: [Swift.String]?, recurringPayment: MoneyHashCore.RecurringPaymentRequest?, automaticReload: MoneyHashCore.AutomaticReloadPaymentRequest?) async throws -> MoneyHashCore.NativePayReceipt
+  func isDeviceCompatible() -> Swift.Bool
+  func setLocale(_ locale: MoneyHashCore.MHLocale)
+  func updateFees(intentId: Swift.String, fees: [MoneyHashCore.FeeItem]) async throws -> MoneyHashCore.FeesData?
+  func updateDiscount(intentId: Swift.String, discount: MoneyHashCore.DiscountItem) async throws -> MoneyHashCore.DiscountData?
+  func setPublicKey(_ key: Swift.String)
+  func setIntentSecret(_ secret: Swift.String)
+  func selectInstallmentPlan(intentId: Swift.String, installmentPlanData: MoneyHashCore.InstallmentPlanData) async throws -> MoneyHashCore.IntentDetails
+  func getInstallmentPlans(amount: Swift.Double, currency: Swift.String, first6Digits: Swift.String?) async throws -> [MoneyHashCore.InstallmentPlan]
+  func getApplePayBinLookup(receipt: MoneyHashCore.NativePayReceipt, methodID: Swift.String, flowId: Swift.String?) async throws -> MoneyHashCore.LookupData
+  func getSubscriptionPlans(planGroupId: Swift.String, customerId: Swift.String) async throws -> [MoneyHashCore.SubscriptionPlan]
+  func selectSubscriptionPlan(planGroupId: Swift.String, customerId: Swift.String, planId: Swift.String) async throws -> MoneyHashCore.IntentDetails
+  func getSubscriptionPlanGroups(limit: Swift.Int?, offset: Swift.Int?, currency: Swift.String?) async throws -> MoneyHashCore.SubscriptionPlanGroupsResponse
+  func renderSubscriptionEmbed(on viewController: UIKit.UIViewController, intentId: Swift.String, embedStyle: MoneyHashCore.EmbedStyle?, completionHandler: @escaping (Swift.Result<MoneyHashCore.IntentDetails, any Swift.Error>) -> Swift.Void)
+  func renderCreateBankAccountTokenEmbed(on viewController: UIKit.UIViewController, intentId: Swift.String, completionHandler: @escaping (Swift.Result<MoneyHashCore.BankAccountTokenizationStatus, any Swift.Error>) -> Swift.Void)
+  func tokenizeReceipt(receipt: Swift.String, methodId: Swift.String, cardTokenIntentId: Swift.String) async throws -> Swift.String
+}
+public class MoneyHashSDKBuilder {
+  public init()
+  @discardableResult
+  public func setPublicKey(_ key: Swift.String) -> MoneyHash.MoneyHashSDKBuilder
+  @discardableResult
+  public func setApplePayConfiguration(_ applePayConfiguration: MoneyHashCore.ApplePayConfiguration) -> MoneyHash.MoneyHashSDKBuilder
+  public func build() -> any MoneyHash.MoneyHashSDK
+  @objc deinit
 }
 @available(iOS 15.0, *)
 @_Concurrency.MainActor @preconcurrency public struct SecureTextField<Content> : SwiftUICore.View where Content : SwiftUICore.View {
@@ -133,13 +127,5 @@ public enum CollectibleBillingData : Swift.String, Swift.Codable {
   @available(iOS 15.0, *)
   public typealias Body = @_opaqueReturnTypeOf("$s9MoneyHash15SecureTextFieldV4bodyQrvp", 0) __<Content>
 }
-extension MoneyHash.OperationType : Swift.Equatable {}
-extension MoneyHash.OperationType : Swift.Hashable {}
-extension MoneyHash.ErrorType : Swift.Equatable {}
-extension MoneyHash.ErrorType : Swift.Hashable {}
-extension MoneyHash.ErrorType : Swift.RawRepresentable {}
-extension MoneyHash.CollectibleBillingData : Swift.Equatable {}
-extension MoneyHash.CollectibleBillingData : Swift.Hashable {}
-extension MoneyHash.CollectibleBillingData : Swift.RawRepresentable {}
 @available(iOS 15.0, *)
 extension MoneyHash.SecureTextField : Swift.Sendable {}

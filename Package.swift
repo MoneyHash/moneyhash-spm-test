@@ -18,12 +18,12 @@ let package = Package(
         .package(
             name: "MoneyHashShared",
             url: "https://github.com/MoneyHash/kmm-test-spm.git",
-            .exact("0.0.6-beta.1")
+            .exact("0.0.6-beta.2")
         ),
         .package(
             name: "MoneyHashCore",
             url: "https://github.com/MoneyHash/core-ios-test-spm.git",
-            .exact("0.0.4-beta.1")
+            .exact("0.0.4-beta.2")
         )
     ],
     targets: [
