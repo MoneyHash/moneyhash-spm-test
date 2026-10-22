@@ -37,8 +37,8 @@ let package = Package(
         ),
         .binaryTarget(
             name: "MoneyHash",
-            url: "https://github.com/MoneyHash/moneyhash-spm-test/releases/download/0.0.3-beta.3/MoneyHash.xcframework.zip",
-            checksum: "1dfc30f321496949b37c31026b5137c2b5c7aaaced8340a021f182bb4b8176e0"
+            url: "https://github.com/MoneyHash/moneyhash-spm-test/releases/download/0.0.3-dev.1/MoneyHash.xcframework.zip",
+            checksum: "71b3e6369ea3a9f2eaff9f1b1d2ddd1430a6b175400c672a7c80cc2e3ae227cf"
         )
     ]
 )
